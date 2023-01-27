@@ -3,6 +3,10 @@ import './App.css';
 import Greeting from './components/pure/greeting'; //para renderizar
 import GreetingF from './components/pure/greetingF';
 import TaskListComponent from './components/container/task_list';
+import Ejemplo1 from './hooks/Ejemplo1';
+import Ejemoplo2 from './hooks/Ejemoplo2';
+import MiComponenteConContexto from './hooks/Ejemplo3';
+import Ejemplo4 from './hooks/Ejemplo4';
 
 
 
@@ -18,7 +22,21 @@ function App() {
        {/*<GreetingF name={"Martin"}></GreetingF> */} 
 
        {/*componente de lista de tareas */}
-       <TaskListComponent></TaskListComponent>
+      {/*<TaskListComponent></TaskListComponent> */} 
+
+      {/*Ejemplos de uso de HOOKS  */}
+      {/*<Ejemplo1></Ejemplo1> */} 
+      {/*<Ejemoplo2></Ejemoplo2> */} 
+      {/*<MiComponenteConContexto></MiComponenteConContexto> */}
+      <Ejemplo4 nombre="Raquel">
+      {/*todo lo q hay aqui adentro, es tratado como props.children */}
+        <h3>
+          Contenido del props.children
+        </h3>
+      </Ejemplo4>
+      
+
+
       </header>
     </div>
   );
