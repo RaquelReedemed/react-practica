@@ -7,6 +7,7 @@ import Ejemplo1 from './hooks/Ejemplo1';
 import Ejemoplo2 from './hooks/Ejemoplo2';
 import MiComponenteConContexto from './hooks/Ejemplo3';
 import Ejemplo4 from './hooks/Ejemplo4';
+import { ComponenteEstado } from './hooks/ComponenteEstado';
 
 
 
@@ -28,12 +29,19 @@ function App() {
       {/*<Ejemplo1></Ejemplo1> */} 
       {/*<Ejemoplo2></Ejemoplo2> */} 
       {/*<MiComponenteConContexto></MiComponenteConContexto> */}
+      
+
+      {/*
       <Ejemplo4 nombre="Raquel">
-      {/*todo lo q hay aqui adentro, es tratado como props.children */}
-        <h3>
+      {/*todo lo q hay aqui adentro, es tratado como props.children 
+      <h3>
           Contenido del props.children
         </h3>
       </Ejemplo4>
+    
+       */}
+
+       <ComponenteEstado></ComponenteEstado>
       
 
 
