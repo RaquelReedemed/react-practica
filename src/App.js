@@ -8,14 +8,16 @@ import Ejemoplo2 from './hooks/Ejemoplo2';
 import MiComponenteConContexto from './hooks/Ejemplo3';
 import Ejemplo4 from './hooks/Ejemplo4';
 import { ComponenteEstado } from './hooks/ComponenteEstado';
+import GreetingStyled from './components/pure/greetingStyled';
+
 
 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      {/* <header className="App-header"> */}
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* Componente propio Greeting.jsx */}   
         {/* <Greeting name={"Martin"}></Greeting>  */}
 
@@ -23,7 +25,7 @@ function App() {
        {/*<GreetingF name={"Martin"}></GreetingF> */} 
 
        {/*componente de lista de tareas */}
-      {/*<TaskListComponent></TaskListComponent> */} 
+      {/*<TaskListComponent></TaskListComponent>*/}    
 
       {/*Ejemplos de uso de HOOKS  */}
       {/*<Ejemplo1></Ejemplo1> */} 
@@ -41,11 +43,13 @@ function App() {
     
        */}
 
-       <ComponenteEstado></ComponenteEstado>
-      
+       {/* EJEMPLO DEL AFTER CLASS */}
+      {/* <ComponenteEstado></ComponenteEstado>*/} 
 
+     {/*  <GreetingStyled name="Raquel" ></GreetingStyled> {/*se le pasa por props name */} 
+     {/*  </header> */}
 
-      </header>
+     <TaskListComponent></TaskListComponent>
     </div>
   );
 }

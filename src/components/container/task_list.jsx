@@ -12,11 +12,14 @@ const TaskListComponent = () => {
 
 //cuando haya una declaracion de este componente se ejecute esta funcion y devolver algo
    //LEVELS.NORMARL, hara una tarea por defecto
-   const defaultTask = new Task('Example', 'Default Descripcion', false, LEVELS.NORMAL);
+   const defaultTask1 = new Task('Example1', 'Descripcion1', true, LEVELS.NORMAL);
+   const defaultTask2 = new Task('Example2', 'Descripcion2', false, LEVELS.URGENT);
+   const defaultTask3 = new Task('Example3', 'Descripcion3', false, LEVELS.BLOCKING);
+
 
   
   // estado del componente 
-   const [tasks, setTasks] = useState(defaultTask);
+   const [tasks, setTasks] = useState([defaultTask1, defaultTask2, defaultTask3]);
    //estado para ver si esta cargando o no, esta login o no. Se traer la tarea de un http
    const [loading, setLoading] = useState(false); //cada vez q entre carga por defecto, controla la peticion
 
@@ -37,13 +40,52 @@ const TaskListComponent = () => {
    //configurar q el componente de task_list devuelva un componente de tipo tarea 
 
     return (
-        <div>
-            <div>
-             <h1>Your Tasks:</h1>    
+      <div>
+        <div className="col-12">
+          <div className="card">
+            {/* Card Header (title) */}
+            <div className="card-header p-3">
+              <h5>Your Tasks:</h5>
             </div>
-            {/*HACER: Aplicar un for/map para renderizar una lista de tareas */}
-            <TaskComponent task={defaultTask}></TaskComponent> {/*se va a pintar lo que hayamos dicho en task.jsx que se devuelva */}
+            {/* Card body (content) */}
+            <div
+              className="card-body"
+              data-mdb-perfect-scrollbar="true"
+              style={{ position: "relative", height: "400px" }}
+            >
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody> {/* iteramos como un foreach, obtenemos cada una de las tareas y cada uno de los indices y los utilizo para darle una clave y darle una tarea al prop  */}
+                    { tasks.map((task, index) => {
+                      return(      
+                   <TaskComponent 
+                      key={index} 
+                      task={task}>
+                   </TaskComponent>
+                      )
+                    }
+                    )}    
+
+
+
+                   {/* Iterar sobre una lista de tareas */}
+                   
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+        {/*HACER: Aplicar un for/map para renderizar una lista de tareas */}
+       {/*  <TaskComponent task={defaultTask}></TaskComponent>{" "} */}
+        {/*se va a pintar lo que hayamos dicho en task.jsx que se devuelva */}
+      </div>
     );
 };
 
