@@ -9,6 +9,7 @@ import MiComponenteConContexto from './hooks/Ejemplo3';
 import Ejemplo4 from './hooks/Ejemplo4';
 import { ComponenteEstado } from './hooks/ComponenteEstado';
 import GreetingStyled from './components/pure/greetingStyled';
+import Father from './components/container/father';
 
 
 
@@ -49,7 +50,14 @@ function App() {
      {/*  <GreetingStyled name="Raquel" ></GreetingStyled> {/*se le pasa por props name */} 
      {/*  </header> */}
 
-     <TaskListComponent></TaskListComponent>
+     {/* Gestion de Eventos */}
+     <Father></Father>
+     
+     
+     {/* <TaskListComponent></TaskListComponent> */}
+
+
+
     </div>
   );
 }

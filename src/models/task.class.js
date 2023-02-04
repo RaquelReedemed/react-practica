@@ -1,4 +1,4 @@
-/* //clase nombre, descripcion, si esta o no completa y nievel de urgencia
+//clase nombre, descripcion, si esta o no completa y nievel de urgencia
 
 import { LEVELS } from "./levels.enum";
 
@@ -25,22 +25,7 @@ export class Task {
 //* 2-ir a carpeta pure crear archivo task, la idea es que task_list renderize a task. Es decir app va a renderizar a task_list y esta a su vez va a renderizar a task formando una jerarquia de 3 niveles APP -> TASK_LIST -> TASK
 // ejemplo si un componente TASK dice que se tiene que borrar el mismo tendra que avisar al de la lista y pasarle un id para que lo borre y asi generar un nuevo estado y volver a pintar la lista
 //* 3- ir a task.jsx
- */
+ 
 
-import { LEVELS } from "./levels.enum";
 
-export class Task {
-    name = '';
-    description = '';
-    completed = false;
-    level = LEVELS.NORMAL;
-
-    constructor(name, description, completed, level){
-        this.name = name;
-        this.description = description;
-        this.completed = completed;
-        this.level = level
-    }
-
-}
 
