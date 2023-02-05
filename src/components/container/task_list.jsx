@@ -3,9 +3,10 @@ import React, {useState, useEffect} from 'react';
 import { LEVELS } from '../../models/levels.enum';
 import { Task } from '../../models/task.class';
 import TaskComponent from '../pure/task';
-
+import TaskForm from '../pure/forms/TaskForm';
 // importamos la hoja de estilos de task.scss
 import '../../styles/task.scss';
+
 
 const TaskListComponent = () => {
  //definir un estad inicial
@@ -31,6 +32,39 @@ const TaskListComponent = () => {
     console.log('TaskList component is going to unmount') //para cuando desaparezca el componente
     };
   }, [tasks]); //queremos q algo se ejecute cuando haya modificacion de las tareas
+
+
+
+  //clase8, 
+//pasar esta funcion al hijo a travez de props
+  function completeTask(task) {  //se cambiara el estado y que a su vez cambie el componente inferior que esta leyendo de esas tareas, incluso vuelva a refrescar el bucle.
+    console.log('Complete this Task:', task)
+    const index = tasks.indexOf(task) //se busca el indice dentro de la lista de tareas cual es la tarea que estamos modificando
+    const tempTasks =  [...tasks] //variable temporal que sean todas las tareas que tenemos hasta este momento
+    tempTasks[index].completed = ! tempTasks[index].completed //modificar la  tarea concreta dentro de la posicion concreta.
+    /*we update the state of component with the new list of tasks and it will ulpdate the 
+    interation of the task in ornder to show the task update  */
+    setTasks(tempTasks);
+  } 
+  
+  function deleteTask(task) {
+    console.log('Delete this Task:', task);
+    const index = tasks.indexOf(task);
+    const tempTasks =  [...tasks];
+    tempTasks.splice(index, 1); //el indice del cual partimos para borrar un elemento es el index y borraremos 1 elemento
+    setTasks(tempTasks); //para actualizar
+  }
+
+  //va a recibir una task que se la pasa el hijo
+  function addTask(task){  //se obtienen la lista de tareas
+    console.log('Delete this Task:', task);
+    const index = tasks.indexOf(task);
+    const tempTasks =  [...tasks];
+    tempTasks.push(task); //a;adimos la tarea
+    setTasks(tempTasks) //a;adimos la nueva lista
+  }
+
+
 
     const changeCompleted = (id) => {
     console.log('TODO: Cambiar estado de una tarea')
@@ -67,16 +101,15 @@ const TaskListComponent = () => {
                       return(      
                    <TaskComponent 
                       key={index} 
-                      task={task}>
+                      task={task}
+                      complete={completeTask}
+                      remove={deleteTask}
+                      > {/* pasar los props del task.jsx */}
+                      
                    </TaskComponent>
                       )
                     }
-                    )}    
-
-
-
-                   {/* Iterar sobre una lista de tareas */}
-                   
+                    )}           
                 </tbody>
               </table>
             </div>
@@ -85,6 +118,9 @@ const TaskListComponent = () => {
         {/*HACER: Aplicar un for/map para renderizar una lista de tareas */}
        {/*  <TaskComponent task={defaultTask}></TaskComponent>{" "} */}
         {/*se va a pintar lo que hayamos dicho en task.jsx que se devuelva */}
+        <TaskForm 
+        add={addTask}
+        ></TaskForm>
       </div>
     );
 };

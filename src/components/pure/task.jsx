@@ -14,7 +14,7 @@ import { LEVELS } from '../../models/levels.enum';
 
 //TaskComponent mostrara el contenido de una tarea que nos va a pasar por props (task), osea cuando tenga mi task_list tendra una tarea.
 
-const TaskComponent = ({ task }) => { //meter el task dentro del prop ({}) este componente puro se le va a pasar la tarea en formato prop, es decir le vamos a pasar una tarea
+const TaskComponent = ({ task, complete, remove }) => { //meter el task dentro del prop ({}) este componente puro se le va a pasar la tarea en formato prop, es decir le vamos a pasar una tarea
     
     //useeffect para saber cuando una tarea desaparece, borra, editemos
 
@@ -62,9 +62,10 @@ const TaskComponent = ({ task }) => { //meter el task dentro del prop ({}) este 
 
     function taskCompletedIcon() {
         if(task.completed) {
-            return (<i className='bi-toggle-on' style={{color: 'green'}}></i>)
+        //onClick, signica que si yo pulse sobre este icono se ejecuta la funcion q viene por prop desde el padre llamada complete y se le pasa la task  
+            return (<i onClick={() => complete(task)} className='bi-toggle-on task-action' style={{color: 'green'}}></i>) 
         }else{
-            return (<i className='bi-toggle-off' style={{color: 'grey'}}></i> )
+            return (<i onClick={() => complete(task)} className='bi-toggle-off task-action' style={{color: 'grey'}}></i> )
         }
     }
     
@@ -87,7 +88,7 @@ const TaskComponent = ({ task }) => { //meter el task dentro del prop ({}) este 
            {/* Execution of function to return icon depending on completion */}
            {taskCompletedIcon()}
 
-              <i className='bi-trash' style={{color: 'tomato'}}></i>
+              <i className='bi-trash  task-action'  style={{color: 'tomato'}} onClick={() => remove(task)} ></i>
               
 
             {/*   <span>{task.completed ? 'Completed' : 'Pending' }</span>  */}
@@ -116,8 +117,10 @@ const TaskComponent = ({ task }) => { //meter el task dentro del prop ({}) este 
 
 TaskComponent.propTypes = {
     //* 5- task (clase tarea) es una instancia, instanceOf verifica que lo q recibimos por propTypes es una tarea, osea el padre (task_list) le va a tener q pasar una tarea
-    task: PropTypes.instanceOf(Task)
-
+    task: PropTypes.instanceOf(Task).isRequired, //isReq significa q si o si debemos pasarle ese campo
+    complete: PropTypes.func.isRequired, //que se una funcion y que sea obligatoria, este se debe ejecutar cuando nosotros ejecutemos algun icono (taskCompletedIcon)
+//complete con isReq nos aseguramos que SIEMPRE DESDE EL PADRE le pasemos la funcion
+    remove: PropTypes.func.isRequired
 };
 
 

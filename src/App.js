@@ -51,10 +51,10 @@ function App() {
      {/*  </header> */}
 
      {/* Gestion de Eventos */}
-     <Father></Father>
+{/*      <Father></Father> */}
      
      
-     {/* <TaskListComponent></TaskListComponent> */}
+      <TaskListComponent></TaskListComponent> 
 
 
 
